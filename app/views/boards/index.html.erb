@@ -1,18 +1,62 @@
-<div class="card" style="width: 18rem;">
+<div class="container">
+  <div class="row">
 
-  <div class="card-header d-flex">
-    <h2>All boards</h2>
-  <button class="btn btn-outline-success ms-auto">
-  Add a new board
-</button>
-</div>
-  <ul class="list-group list-group-flush">
-    <% @list_of_boards.each do |a_board| %>
-      <li class="list-group-item">
-        <a href="/boards/<%= a_board.id %>" style="text-decoration: none; color: black">
-          <%= a_board.name %>
-        </a>
-      </li>
-    <% end %>
-  </ul>
+    <div class="offset-md-3 col-md-6">
+      <div class="card" style="width: 26rem;">
+
+        <div class="card-header d-flex align-items-center">
+          <h2 class="h6">All boards</h2>
+          <button class="btn btn-outline-success btn-sm ms-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Add a new board
+          </button>
+
+          <!-- Modal --->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">New board</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form action="/insert_board" method="post">
+                    <div class="mb-3">
+
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" name="query_name" id="name" class="form-control">
+                    </div>
+                  </form>
+                  <div class="d-grid">
+
+                  <button class="btn btn-success">Add board</button>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ul class="list-group list-group-flush">
+          <% @list_of_boards.each do |a_board| %>
+
+            <li class="list-group-item d-flex">
+              <a href="/boards/<%= a_board.id %>" style="text-decoration: none; color: black">
+                <%= a_board.name %>
+              </a>
+              <div class="ms-auto">
+
+                <i class="fa-solid fa-chevron-right"></i>
+              </div>
+            </li>
+
+          <% end %>
+        </ul>
+
+      </div>
+
+    </div>
+  </div>
 </div>
